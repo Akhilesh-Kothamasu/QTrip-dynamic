@@ -19,6 +19,7 @@ async function fetchCities() {
   try{
     let response = await fetch(config.backendEndpoint+"/cities");
     let data= await response.json();
+    console.log(data);
     return data;
   }catch(error){
     return null;
@@ -32,11 +33,11 @@ function addCityToDOM(id, city, description, image) {
   // 1. Populate the City details and insert those details into the DOM
   let container=document.createElement("div");
   container.innerHTML=`
-  <img src="${image}" alt="#">
-  <div class="tile col-lg-3 col-sm-4">
+  <div class="tile col-lg-3 col-sm-4 d-flex ">
   <a href="pages/adventures/?city=${id}" id="${id}">
   <p>${city}</p>
   <p>${description}</p>
+  <img src="${image}" alt="#">
   </div>
   `;
   document.getElementById("data").appendChild(container);

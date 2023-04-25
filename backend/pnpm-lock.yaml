@@ -1,15 +1,15 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babel/core': ^7.17.10
-  '@testing-library/dom': ^8.13.0
-  body-parser: ^1.19.0
+  '@babel/core': ^7.21.4
+  '@testing-library/dom': ^8.20.0
+  body-parser: ^1.20.2
   cors: ^2.8.5
-  dayjs: ^1.9.4
-  express: ^4.17.1
+  dayjs: ^1.11.7
+  express: ^4.18.2
   lowdb: ^1.0.0
-  nanoid: ^3.1.10
-  typescript: ^3.2.1
+  nanoid: ^3.3.6
+  typescript: ^3.9.10
 
 dependencies:
   '@babel/core': 7.21.4
@@ -379,7 +379,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001481
-      electron-to-chromium: 1.4.369
+      electron-to-chromium: 1.4.371
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11_browserslist@4.21.5
     dev: false
@@ -546,8 +546,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium/1.4.369:
-    resolution: {integrity: sha512-LfxbHXdA/S+qyoTEA4EbhxGjrxx7WK2h6yb5K2v0UCOufUKX+VZaHbl3svlzZfv9sGseym/g3Ne4DpsgRULmqg==}
+  /electron-to-chromium/1.4.371:
+    resolution: {integrity: sha512-jlBzY4tFcJaiUjzhRTCWAqRvTO/fWzjA3Bls0mykzGZ7zvcMP7h05W6UcgzfT9Ca1SW2xyKDOFRyI0pQeRNZGw==}
     dev: false
 
   /encodeurl/1.0.2:
