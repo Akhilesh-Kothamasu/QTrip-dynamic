@@ -16,29 +16,33 @@ async function init() {
 async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
-  try{
-    let response = await fetch(config.backendEndpoint+"/cities");
-    let data= await response.json();
+  try {
+    let response = await fetch(config.backendEndpoint + "/cities");
+    let data = await response.json();
     console.log(data);
     return data;
-  }catch(error){
+  } catch (error) {
     return null;
   }
-  
+
 }
 
 //Implementation of DOM manipulation to add cities
 function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
-  let container=document.createElement("div");
-  container.innerHTML=`
-  <div class="tile col-lg-3 col-sm-4 d-flex ">
+  let container = document.createElement("div");
+  container.className = "col-6 col-lg-3 mb-4"
+  container.innerHTML = `
   <a href="pages/adventures/?city=${id}" id="${id}">
-  <p>${city}</p>
+  <div class="tile">
+  <div class="tile-text tile-center">
+  <h5>${city}</h5>
   <p>${description}</p>
-  <img src="${image}" alt="#">
   </div>
+  <img class="image-responsive" src="${image}" alt="#" />
+  </div>
+  </a>
   `;
   document.getElementById("data").appendChild(container);
 
