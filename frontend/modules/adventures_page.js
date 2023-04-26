@@ -5,6 +5,9 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
+  const params = new URLSearchParams(search);
+  const city=params.get("city");
+  return city;
 
 }
 
@@ -12,14 +15,45 @@ function getCityFromURL(search) {
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
-
+  try{
+    const response = await fetch(config.backendEndpoint+`/adventures?city=${city}`);
+    const json = await response.json();
+    return json;
+  }catch(err){
+    return null;
+  }
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
-
+  adventures.forEach((ele)=>{
+    const divElement = document.createElement("div");
+    divElement.setAttribute("class","col-sm-6 col-lg-3 my-4")
+    divElement.innerHTML=`
+    <a href="detail/?adventure=${ele.id}" id=${ele.id}>
+    <div class="activity-card">
+    <div class="category-banner">
+    <h5>${ele.category}</h5>
+    </div>
+    <img src="${ele.image}">
+    <div class="d-flex justify-content-between align-items-center py-2" style="width: 90%">
+    <div>
+    <h6>${ele.name}</h6>
+    <h6>Duration</h6>
+    </div>
+    <div>
+    <h6>${ele.currency} ${ele.costPerHead}</h6>
+    <h6>${ele.duration} Hours</h6>
+    </div>
+    </div>
+    </div>
+    </a>
+    `
+    const parentElement=document.getElementById("data");
+    parentElement.append(divElement);
+  })
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
