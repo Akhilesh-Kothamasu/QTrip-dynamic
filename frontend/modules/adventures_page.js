@@ -61,7 +61,7 @@ function addAdventureToDOM(adventures) {
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
-  return list.filter((adv) => adv.duration >= low && adv.duration <= low)
+  return list.filter((adv) => (adv.duration >= low && adv.duration <= high));
 }
 
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
@@ -82,19 +82,24 @@ function filterFunction(list, filters) {
   // TODO: MODULE_FILTERS
   // 1. Handle the 3 cases detailed in the comments above and return the filtered list of adventures
   // 2. Depending on which filters are needed, invoke the filterByDuration() and/or filterByCategory() methods
-  if(filters.duration && filters.category.length){
-    let filteredList = filterByDuration(list, parseInt(filters.duration.split('-')[0]), parseInt(filters.duration.split('-')[1]))
-    return filterByCategory(filteredList,filters.category)
+  let filteredlist =[]
+  let arr=filters["duration"].split("-")
+  if(filters["category"].length>0 && filters["duration"].length>0){
+    filteredlist=filterByCategory(list, filters.category)
+    filteredlist=filterByDuration(filteredlist,parseInt(arr[0]),parseInt(arr[1]))
   }
-  if(filters.duration){
-    return filterByDuration(list, parseInt(filters.duration.split('-')[0]), parseInt(filters.duration.split('-')[1]));
+  else if(filters["category"].length>0){
+    filteredlist=filterByCategory(list,filters.category);
   }
-  if(filters.category.length){
-    return filterByCategory(list, filters.category);
+  else if(filters["duration"].length>0){
+  filteredlist=filterByDuration(list,parseInt(arr[0]),parseInt(arr[1]))
+  }
+  else{
+    return list;
   }
 
   // Place holder for functionality to work in the Stubs
-  return list;
+  return filteredlist;
 }
 
 //Implementation of localStorage API to save filters to local storage. This should get called everytime an onChange() happens in either of filter dropdowns
@@ -122,7 +127,19 @@ function getFiltersFromLocalStorage() {
 function generateFilterPillsAndUpdateDOM(filters) {
   // TODO: MODULE_FILTERS
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
-
+  let categoryList=filters["category"];
+  let li=[];
+  for(let i=0;i<categoryList.length;i++)
+  {
+    li.push(categoryList[i]);
+  }
+  for(let i=0;i<li.length;i++)
+  {
+    var div=document.createElement("div");
+    div.setAttribute("class","category-filter");
+    div.innerText=li[i];
+    document.getElementById("category-list").append(div);
+  }
 }
 export {
   getCityFromURL,
